@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add product</title>
+    <link href="/output.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <nav class="bg-lime-900 text-white font-bold uppercase">
+        <ul class="flex justify-center">
+          <li class="ml-4 mr-4 mt-2 mb-2">
+            <a href="/" class="hover:text-lime-200 active:text-lime-200"
+              >Shop</a
+            >
+          </li>
+          <li class="ml-4 mr-4 mt-2 mb-2">
+            <a
+              href="/admin/add-product"
+              class="hover:text-lime-200 active:text-lime-200"
+              >Add product</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="w-full flex flex-col items-center">
+      <h1 class="text-4xl uppercase mt-8 mb-8">*Add products*</h1>
+      <form action="/admin/add-product" method="post">
+        <input
+          class="border-2 rounded-md pl-2 pr-2"
+          type="text"
+          name="title"
+          placeholder="product title"
+        />
+        <textarea name="description" placeholder="Enter your description..." rows="4" cols="48"></textarea>
+        <button
+          type="submit"
+          class="bg-white border-2 border-black pl-2 pr-2 rounded-md hover:bg-lime-900 hover:text-white hover:cursor-pointer"
+        >
+          Add
+        </button>
+      </form>
+    </main>
+  </body>
+</html>

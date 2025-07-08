@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link href="/output.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <nav class="bg-lime-900 text-white font-bold uppercase">
+        <ul class="flex justify-center">
+          <li class="ml-4 mr-4 mt-2 mb-2">
+            <a href="/" class="hover:text-lime-200 active:text-lime-200"
+              >Shop</a
+            >
+          </li>
+          <li class="ml-4 mr-4 mt-2 mb-2">
+            <a
+              href="/admin/add-product"
+              class="hover:text-lime-200 active:text-lime-200"
+              >Add product</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="w-full flex flex-col items-center">
+      <h1 class="text-4xl uppercase mt-8 mb-8">*My products*</h1>
+
+      <% if(products.length > 0) { %>
+      <ul>
+        <% for(let prod of products){ %>
+        <li class="mt-2 mb-2">
+          <article class="bg-amber-400">
+            <h2><%= prod.title %></h2>
+            <p><%= prod.description %></p>
+          </article>
+        </li>
+        <% } %>
+      </ul>
+      <% } else { %>
+        <h2>Product not found...</h2>
+      <% } %>
+    </main>
+  </body>
+</html>
