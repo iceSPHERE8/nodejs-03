@@ -1,1 +1,14 @@
-[{"title":"🆗","description":"ok"},{"title":"1product","description":"some"},{"title":"more","description":"test"}]
+[
+  {
+    "title": "竹林中",
+    "description": "🎍日式短篇巅峰：扑朔迷离的人性，人生真相的不可解",
+    "price": "29.99",
+    "imageUrl": "/images/s34246305.jpg"
+  },
+  {
+    "title": "地狱变",
+    "description": "🔥日本小说巨擎杰作精选：生死考验的极限境地，艺术至上主义",
+    "price": "31.99",
+    "imageUrl": "/images/s34246117.jpg"
+  }
+]

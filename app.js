@@ -16,7 +16,6 @@ app.set("views", "views");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, "public")));
-app.use(express.static(path.join(rootDir, "src")));
 
 app.use("/admin", adminRouter);
 app.use(shopRouter);

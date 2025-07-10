@@ -1,8 +1,48 @@
 <header>
-      <nav class="bg-lime-900 text-white font-bold uppercase">
-        <ul class="flex justify-center">
-          <li class="ml-4 mr-4 mt-2 mb-2"><a href="/" class="hover:text-lime-200 active:text-lime-200">Shop</a></li>
-          <li class="ml-4 mr-4 mt-2 mb-2"><a href="/admin/add-product" class="hover:text-lime-200 active:text-lime-200">Add product</a></li>
-        </ul>
-      </nav>
+  <nav class="bg-lime-900 font-bold uppercase">
+    <ul class="flex justify-center">
+      <li class="ml-4 mr-4 mt-2 mb-2">
+        <a
+          href="/"
+          class="<%= path === '/' ? 'text-lime-200' : 'text-white hover:text-lime-200' %>"
+          >Shop
+        </a>
+      </li>
+      <li class="ml-4 mr-4 mt-2 mb-2">
+        <a
+          href="/products"
+          class="<%= path === '/products' ? 'text-lime-200' : 'text-white hover:text-lime-200' %>"
+          >Products
+        </a>
+      </li>
+      <li class="ml-4 mr-4 mt-2 mb-2">
+        <a
+          href="/cart"
+          class="<%= path === '/cart' ? 'text-lime-200' : 'text-white hover:text-lime-200' %>"
+          >Cart</a
+        >
+      </li>
+      <li class="ml-4 mr-4 mt-2 mb-2">
+        <a
+          href="/orders"
+          class="<%= path === '/orders' ? 'text-lime-200' : 'text-white hover:text-lime-200' %>"
+          >Orders</a
+        >
+      </li>
+      <li class="ml-4 mr-4 mt-2 mb-2">
+        <a
+          href="/admin/add-product"
+          class="<%= path === '/admin/add-product' ? 'text-lime-200' : 'text-white hover:text-lime-200' %>"
+          >Add product
+        </a>
+      </li>
+      <li class="ml-4 mr-4 mt-2 mb-2">
+        <a
+          href="/admin/products"
+          class="<%= path === '/admin/products' ? 'text-lime-200' : 'text-white hover:text-lime-200' %>"
+          >Admin product</a
+        >
+      </li>
+    </ul>
+  </nav>
 </header>

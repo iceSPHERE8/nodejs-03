@@ -8,9 +8,11 @@ const p = path.join(
 );
 
 module.exports = class Product {
-  constructor(t, d) {
-    this.title = t;
-    this.description = d;
+  constructor(title, description, price, imageUrl) {
+    this.title = title;
+    this.description = description;
+    this.price = price;
+    this.imageUrl = imageUrl;
   }
 
   save() {
