@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link href="/css/output.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include("../includes/header.ejs") %>
+
+    <main class="w-full flex flex-col items-center">
+      <h1 class="text-4xl uppercase mt-8 mb-8">
+        <% if(editing) { %> 
+            *Edit products* 
+        <% } else { %> 
+            *Add products* 
+        <% } %>
+      </h1>
+      <form
+        class="flex flex-col items-center"
+        action="/admin/add-product"
+        method="post"
+      >
+        <input
+          class="border-2 rounded-md pl-2 pr-2 w-full"
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Enter product title..."
+          value="<% if(editing) { %> <%= products.title %> <% } %>"
+        />
+        <input
+          class="border-2 rounded-md pl-2 pr-2 w-full mt-2"
+          type="text"
+          name="imageUrl"
+          id="imageUrl"
+          placeholder="Enter product imageUrl..."
+          value="<% if(editing) { %> <%= products.imageUrl %> <% } %>"
+        />
+        <input
+          class="border-2 rounded-md pl-2 pr-2 w-full mt-2"
+          type="number"
+          name="price"
+          id="price"
+          step="0.01"
+          placeholder="Enter product price..."
+          value="<% if(editing) { %> <%= price %> <% } %>"
+        />
+        <textarea
+          class="border-2 rounded-md pl-2 pr-2 w-full mt-2"
+          name="description"
+          id="description"
+          placeholder="Enter your description..."
+          rows="4"
+          cols="48"
+        ><% if(editing) { %> <%= products.description %> <% } %></textarea>
+        <button
+          type="submit"
+          class="uppercase bg-lime-900 w-full mt-2 text-white pt-2 pb-2 hover:translate-y-1 hover:cursor-pointer transition duration-75"
+        >
+        <% if(editing) { %> 
+            Update
+        <% } else { %>
+            Add
+        <% } %>
+        </button>
+      </form>
+    </main>
+  </body>
+</html>
