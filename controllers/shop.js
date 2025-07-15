@@ -33,20 +33,22 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  // Cart.fetchCart(products => {
-  //   console.log('test', products);
-  // });
-  
-  res.render("shop/cart", {
-    title: "My cart",
-    path: req.url,
+  Cart.fetchCart((products) => {
+    Product.fetchAll((allProducts) => {
+      res.render("shop/cart", {
+      title: "My cart",
+      path: req.url,
+      productsData: products,
+      allProductsData: allProducts,
+    });
+    })
   });
 };
 
 exports.addCart = (req, res, next) => {
   Cart.addProduct(req.body.productId, parseFloat(req.body.productPrice));
   res.redirect("/cart");
-}
+};
 
 exports.getCheckout = (req, res, next) => {
   res.render("shop/checkout", {

@@ -14,12 +14,16 @@
         <% if(editing) { %> 
             *Edit products* 
         <% } else { %> 
-            *Add products* 
+            *Add products <%= editing %>* 
         <% } %>
       </h1>
       <form
         class="flex flex-col items-center"
+        <% if(editing) { %>
+        action="/admin/edit-product/<%= products.id %>"
+        <% } else { %>
         action="/admin/add-product"
+        <% } %>
         method="post"
       >
         <input
@@ -28,7 +32,7 @@
           name="title"
           id="title"
           placeholder="Enter product title..."
-          value="<% if(editing) { %> <%= products.title %> <% } %>"
+          value="<%if(editing){%><%= products.title %><%}%>"
         />
         <input
           class="border-2 rounded-md pl-2 pr-2 w-full mt-2"
@@ -36,7 +40,7 @@
           name="imageUrl"
           id="imageUrl"
           placeholder="Enter product imageUrl..."
-          value="<% if(editing) { %> <%= products.imageUrl %> <% } %>"
+          value="<%if(editing){%><%= products.imageUrl %><%}%>"
         />
         <input
           class="border-2 rounded-md pl-2 pr-2 w-full mt-2"
@@ -45,7 +49,7 @@
           id="price"
           step="0.01"
           placeholder="Enter product price..."
-          value="<% if(editing) { %> <%= price %> <% } %>"
+          value="<%if(editing){%><%= products.price %><%}%>"
         />
         <textarea
           class="border-2 rounded-md pl-2 pr-2 w-full mt-2"
@@ -54,7 +58,7 @@
           placeholder="Enter your description..."
           rows="4"
           cols="48"
-        ><% if(editing) { %> <%= products.description %> <% } %></textarea>
+        ><%if(editing){%><%= products.description %><%}%></textarea>
         <button
           type="submit"
           class="uppercase bg-lime-900 w-full mt-2 text-white pt-2 pb-2 hover:translate-y-1 hover:cursor-pointer transition duration-75"
