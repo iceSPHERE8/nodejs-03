@@ -11,17 +11,23 @@
 
     <main class="w-full flex flex-col items-center">
       <h1 class="text-4xl uppercase mt-8 mb-8">*My cart*</h1>
-      <% if(productsData.products.length > 0){ %>
+      <% if(productsData.length > 0){ %>
         <ul>
-          <% for(const prod of productsData.products){ %>
-            <% for(const sprod of allProductsData){ %>
-              <% if(prod.id === sprod.id){ %>
-                <li><%= sprod.title %>(<%= prod.quantity %>)</li>
-              <% } %>
-            <% } %>
+          <% for(const prod of productsData){ %>
+            <li>
+              <%= prod.product.title %>(<%= prod.quantity %>)
+              <form action="/delete-cart-item" method="post">
+                <input type="hidden" name="productId" value="<%= prod.product.id %>" />
+                <input type="hidden" name="productPrice" value="<%= prod.product.price %>" />
+                <button 
+                  type="submit"
+                  class="uppercase bg-lime-900 w-full mt-2 text-white pt-2 pb-2 hover:translate-y-1 hover:cursor-pointer transition duration-75"
+                >Delete</button>
+              </form>
+            </li>
           <% } %>
         </ul>
-        <h3>Total price: <%= productsData.totalPrice %></h3>
+        <h3>Total price: <%= totalPrice %></h3>
       <% } else { %>
         Not found any product...
       <% } %>

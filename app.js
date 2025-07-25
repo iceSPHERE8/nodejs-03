@@ -4,10 +4,12 @@ const rootDir = require("./utils/path");
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const {adminRouter} = require("./routes/admin");
+const { adminRouter } = require("./routes/admin");
 const shopRouter = require("./routes/shop");
 
 const error404Controller = require("./controllers/error");
+
+const sequelize = require("./utils/database");
 
 const app = express();
 
@@ -22,4 +24,10 @@ app.use(shopRouter);
 
 app.use(error404Controller.get404Page);
 
-app.listen(3000);
+sequelize
+  .sync()
+  .then((res) => {
+    // console.log(res);
+    app.listen(3000);
+  })
+  .catch((err) => console.log(err));
