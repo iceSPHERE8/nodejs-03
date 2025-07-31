@@ -30,7 +30,7 @@
             </div>
             <p class="mt-2 border-t-2 border-b-2"><%= prod.description %></p>
             <div class="w-full flex justify-between">
-              <form class="w-6/12 mr-1" action="/admin/edit-product/<%= prod.id %>" method="get">
+              <form class="w-6/12 mr-1" action="/admin/edit-product/<%= prod._id %>" method="get">
                 <input type="hidden" name="edit" value="true" />
                 <button
                   class="uppercase bg-lime-900 w-full mt-2 text-white pt-2 pb-2 hover:translate-y-1 hover:cursor-pointer transition duration-75"
@@ -40,7 +40,7 @@
                 </button>
               </form>
               <form class="w-6/12 ml-1" action="/admin/delete-product" method="post">
-                <input type="hidden" name="productId" value="<%= prod.id %>" />
+                <input type="hidden" name="productId" value="<%= prod._id %>" />
                 <input type="hidden" name="productPrice" value="<%= prod.price %>" />
                 <button
                   class="uppercase bg-lime-900 w-full mt-2 text-white pt-2 pb-2 hover:translate-y-1 hover:cursor-pointer transition duration-75"

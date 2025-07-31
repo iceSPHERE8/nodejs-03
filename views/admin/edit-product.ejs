@@ -20,7 +20,7 @@
       <form
         class="flex flex-col items-center"
         <% if(editing) { %>
-        action="/admin/edit-product/<%= products.id %>"
+        action="/admin/edit-product/<%= products._id %>"
         <% } else { %>
         action="/admin/add-product"
         <% } %>

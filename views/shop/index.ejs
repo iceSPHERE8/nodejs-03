@@ -14,7 +14,7 @@
 
       <% if(products.length > 0) { %>
       <ul class="flex">
-        <% for(let prod of products){ %>
+        <% for(const prod of products){ %>
         <li class="m-4 w-3/12">
           <article class="w-full flex flex-col items-left">
             <img src="<%= prod.imageUrl %>" />
@@ -31,11 +31,11 @@
             <p class="mt-2 border-t-2 border-b-2"><%= prod.description %></p>
             <a
               class="uppercase text-center bg-lime-900 w-full mt-2 text-white pt-2 pb-2 hover:translate-y-1 hover:cursor-pointer transition duration-75"
-              href="/products/<%= prod.id %>"
+              href="/products/<%= prod._id %>"
               >Detail</a
             >
             <form action="/add-to-cart" method="post">
-              <input hidden name="productId" value="<%= prod.id %>" />
+              <input hidden name="productId" value="<%= prod._id %>" />
               <input hidden name="productPrice" value="<%= prod.price %>" />
               <button
                 class="uppercase bg-lime-900 w-full mt-2 text-white pt-2 pb-2 hover:translate-y-1 hover:cursor-pointer transition duration-75"

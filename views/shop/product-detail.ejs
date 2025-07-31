@@ -18,7 +18,7 @@
           </h1>
           <p class="ml-8 mt-8"><%= product.description %></p>
           <form action="/add-to-cart" method="post">
-            <input hidden name="productId" value="<%= product.id %>" />
+            <input hidden name="productId" value="<%= product._id %>" />
             <input hidden name="productPrice" value="<%= product.price %>" />
             <button
               class="uppercase bg-lime-900 w-[128px] mt-8 ml-8 text-white pt-2 pb-2 hover:translate-y-1 hover:cursor-pointer transition duration-75"

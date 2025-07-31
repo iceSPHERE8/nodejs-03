@@ -11,6 +11,22 @@
 
     <main class="w-full flex flex-col items-center">
       <h1 class="text-4xl uppercase mt-8 mb-8">*My orders*</h1>
+      <% if(orders.length > 0)  { %>
+        <ul>
+          <% for(const order of orders) { %>
+            <li>
+              <h3>#<%= order.id %></h3>
+              <ul>
+                <% for(const product of order.products) { %>
+                  <li><%= product.title %> (<%= product.orderItem.quantity %>)</li>
+                <% } %>
+              </ul>
+            </li>
+          <% } %>
+        </ul>
+      <% } else { %>
+        <h3>Nothing found in your oders.</h3>
+      <% } %>
     </main>
   </body>
 </html>
