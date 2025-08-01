@@ -25,9 +25,11 @@ exports.addProduct = (req, res, next) => {
     req.body.title,
     req.body.price,
     req.body.imageUrl,
-    req.body.description
+    req.body.description,
+    null,
+    req.user._id
   );
-  console.log(product)
+  
   product
     .save()
     .then((result) => {
@@ -79,10 +81,7 @@ exports.updateProduct = (req, res, next) => {
 exports.deleteProduct = (req, res, next) => {
   const productId = req.body.productId;
 
-  Product.findById(productId)
-    .then((product) => {
-      return product.destroy();
-    })
+  Product.deleteById(productId)
     .then((result) => {
       res.redirect("/admin/products");
     })

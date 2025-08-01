@@ -11,13 +11,13 @@
 
     <main class="w-full flex flex-col items-center">
       <h1 class="text-4xl uppercase mt-8 mb-8">*My cart*</h1>
-      <% if(productsData.length > 0){ %>
+      <% if(products.length > 0){ %>
         <ul>
-          <% for(const prod of productsData){ %>
+          <% for(const prod of products){ %>
             <li>
-              <%= prod.title %>(<%= prod.cartItem.quantity %>)
+              <%= prod.title %>(<%= prod.quantity %>)
               <form action="/delete-cart-item" method="post">
-                <input type="hidden" name="productId" value="<%= prod.id %>" />
+                <input type="hidden" name="productId" value="<%= prod._id %>" />
                 <input type="hidden" name="productPrice" value="<%= prod.price %>" />
                 <button 
                   type="submit"
