@@ -4,7 +4,7 @@ const rootDir = require("./utils/path");
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const { mongoConnect, getDB } = require("./utils/database");
+const { mongoConnect } = require("./utils/database");
 
 const User = require("./models/user");
 
@@ -25,7 +25,6 @@ app.use((req, res, next) => {
   User.findById("688c7a6d00fb65a5fbfbff80")
     .then((user) => {
       req.user = new User(user.username, user.email, user.cart, user._id);
-      // console.log(req.user)
       next();
     })
     .catch((err) => console.log(err));
