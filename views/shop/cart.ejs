@@ -15,7 +15,7 @@
         <ul>
           <% for(const prod of products){ %>
             <li>
-              <%= prod.title %>(<%= prod.quantity %>)
+              <%= prod.productId.title %>(<%= prod.quantity %>)
               <form action="/delete-cart-item" method="post">
                 <input type="hidden" name="productId" value="<%= prod._id %>" />
                 <input type="hidden" name="productPrice" value="<%= prod.price %>" />

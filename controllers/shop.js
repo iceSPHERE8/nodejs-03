@@ -2,7 +2,7 @@ const Product = require("../models/product");
 const User = require("../models/user");
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll()
+  Product.find()
     .then((products) => {
       res.render("shop/product-list", {
         title: "All Products",
@@ -28,7 +28,7 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-  Product.fetchAll()
+  Product.find()
     .then((products) => {
       res.render("shop/index", {
         title: "Shop",
@@ -40,7 +40,11 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  req.user.getCart().then((cartItems) => {
+  req.user.populate("cart.items.productId")
+  .then((cart) => {
+
+    const cartItems = cart.cart.items;
+    // console.log(cartItems)
     res.render("shop/cart", {
       title: "Shop",
       products: cartItems,

@@ -4,7 +4,7 @@ const rootDir = require("./utils/path");
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const { mongoConnect } = require("./utils/database");
+const mongoose = require("mongoose");
 
 const User = require("./models/user");
 
@@ -22,9 +22,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, "public")));
 
 app.use((req, res, next) => {
-  User.findById("688c7a6d00fb65a5fbfbff80")
+  User.findById("68931ce73e701fcbc21e8e25")
     .then((user) => {
-      req.user = new User(user.username, user.email, user.cart, user._id);
+      req.user = user;
       next();
     })
     .catch((err) => console.log(err));
@@ -35,10 +35,25 @@ app.use(shopRouter);
 
 app.use(error404Controller.get404Page);
 
-mongoConnect((client) => {
-  app.listen(3000);
+mongoose
+  .connect(
+    "mongodb+srv://fatony:3EPo47vXefw7dYZw@cluster0.lqa7wj7.mongodb.net/shop?retryWrites=true&w=majority&appName=Cluster0"
+  )
+  .then((result) => {
+    User.findOne().then((user) => {
+      if (!user) {
+        const user = new User({
+          name: "fatony",
+          email: "test@test.com",
+          cart: {
+            items: [],
+          },
+        });
+        user.save();
+      }
+    });
 
-  // Create a user
-  // const user = new User("fatony", "jacknasppear@outlook.com");
-  // user.save();
-});
+    console.log("Connected!");
+    app.listen(3000);
+  })
+  .catch((err) => console.log(err));
