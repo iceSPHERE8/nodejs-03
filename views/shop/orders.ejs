@@ -17,8 +17,8 @@
             <li>
               <h3>#<%= order._id %></h3>
               <ul>
-                <% for(const product of order.items) { %>
-                  <li><%= product.title %> (<%= product.quantity %>)</li>
+                <% for(const p of order.products) { %>
+                  <li><%= p.product.title %> (<%= p.quantity %>)</li>
                 <% } %>
               </ul>
             </li>
