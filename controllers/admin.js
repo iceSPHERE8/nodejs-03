@@ -5,6 +5,7 @@ exports.getAddProductPage = (req, res, next) => {
     title: "Add product",
     path: "/admin" + req.url,
     editing: false,
+    isAuthenticated: req.session.isLogged,
   });
 };
 
@@ -15,6 +16,7 @@ exports.getProducts = (req, res, next) => {
         title: "Admin products",
         products: products,
         path: "/admin" + req.url,
+        isAuthenticated: req.session.isLogged,
       });
     })
     .catch((err) => console.log(err));
@@ -26,7 +28,7 @@ exports.addProduct = (req, res, next) => {
     price: req.body.price,
     imageUrl: req.body.imageUrl,
     description: req.body.description,
-    userId: req.user._id,
+    userId: req.session.user._id,
   });
 
   product
@@ -49,6 +51,7 @@ exports.getEditProduct = (req, res, next) => {
         products: product,
         path: "/admin" + req.url,
         editing: editMode,
+        isAuthenticated: req.session.isLogged,
       });
     })
     .catch((err) => console.log(err));

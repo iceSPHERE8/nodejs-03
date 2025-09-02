@@ -5,6 +5,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 const User = require("./models/user");
 
@@ -22,14 +24,19 @@ app.set("views", "views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, "public")));
 
-app.use((req, res, next) => {
-  User.findById("68931ce73e701fcbc21e8e25")
-    .then((user) => {
-      req.user = user;
-      next();
-    })
-    .catch((err) => console.log(err));
+const MONGODB_URI = "mongodb+srv://fatony:3EPo47vXefw7dYZw@cluster0.lqa7wj7.mongodb.net/shop?retryWrites=true&w=majority&appName=Cluster0";
+
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: "sessions"
 });
+
+app.use(session({
+  secret: "my secret",
+  resave: false,
+  saveUninitialized: false,
+  store: store
+}));
 
 app.use("/admin", adminRouter);
 app.use(shopRouter);
@@ -39,7 +46,7 @@ app.use(error404Controller.get404Page);
 
 mongoose
   .connect(
-    "mongodb+srv://fatony:3EPo47vXefw7dYZw@cluster0.lqa7wj7.mongodb.net/shop?retryWrites=true&w=majority&appName=Cluster0"
+    MONGODB_URI
   )
   .then((result) => {
     User.findOne().then((user) => {

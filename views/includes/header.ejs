@@ -29,7 +29,8 @@
           >Orders</a
         >
       </li>
-      <!-- <li class="ml-4 mr-4 mt-2 mb-2">
+      <% if(isAuthenticated) { %>
+      <li class="ml-4 mr-4 mt-2 mb-2">
         <a
           href="/admin/add-product?edit=false"
           class="<%= path === '/admin/add-product' ? 'text-lime-200' : 'text-white hover:text-lime-200' %>"
@@ -42,7 +43,8 @@
           class="<%= path === '/admin/products' ? 'text-lime-200' : 'text-white hover:text-lime-200' %>"
           >Admin product</a
         >
-      </li> -->
+      </li>
+      <% } %>
       <li class="ml-4 mr-4 mt-2 mb-2">
         <a
           href="/login"
