@@ -34,6 +34,7 @@
               href="/products/<%= prod._id %>"
               >Detail</a
             >
+            <% if(isAuthenticated) { %>
             <form action="/add-to-cart" method="post">
               <input hidden name="productId" value="<%= prod._id %>" />
               <input hidden name="productPrice" value="<%= prod.price %>" />
@@ -44,6 +45,7 @@
                 Add to cart
               </button>
             </form>
+            <% } %>
           </article>
         </li>
         <% } %>

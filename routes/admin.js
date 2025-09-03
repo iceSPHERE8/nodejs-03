@@ -15,5 +15,5 @@ router.post("/delete-product", adminCtroller.deleteProduct);
 router.post("/add-product", adminCtroller.addProduct);
 
 module.exports = {
-  adminRouter: router
+    adminRouter: router,
 };

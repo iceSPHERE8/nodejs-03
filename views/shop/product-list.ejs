@@ -33,6 +33,7 @@
               class="uppercase text-center bg-lime-900 w-full mt-2 text-white pt-2 pb-2 hover:translate-y-1 hover:cursor-pointer transition duration-75"
               href="/products/<%= prod._id %>"
               >Detail</a>
+            <% if(isAuthenticated) { %>
             <form action="/add-to-cart" method="post">
               <input hidden name="productId" value="<%= prod._id %>" />
               <input hidden name="productPrice" value="<%= prod.price %>" />
@@ -43,6 +44,7 @@
                 Add to cart
               </button>
             </form>
+            <% } %>
           </article>
         </li>
         <% } %>

@@ -24,19 +24,34 @@ app.set("views", "views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, "public")));
 
-const MONGODB_URI = "mongodb+srv://fatony:3EPo47vXefw7dYZw@cluster0.lqa7wj7.mongodb.net/shop?retryWrites=true&w=majority&appName=Cluster0";
+const MONGODB_URI =
+    "mongodb+srv://fatony:3EPo47vXefw7dYZw@cluster0.lqa7wj7.mongodb.net/shop?retryWrites=true&w=majority&appName=Cluster0";
 
 const store = new MongoDBStore({
-  uri: MONGODB_URI,
-  collection: "sessions"
+    uri: MONGODB_URI,
+    collection: "sessions",
 });
 
-app.use(session({
-  secret: "my secret",
-  resave: false,
-  saveUninitialized: false,
-  store: store
-}));
+app.use(
+    session({
+        secret: "my secret",
+        resave: false,
+        saveUninitialized: false,
+        store: store,
+    })
+);
+
+app.use((req, res, next) => {
+    if (!req.session.user) {
+        return next();
+    }
+    User.findById(req.session.user._id)
+        .then((user) => {
+            req.user = user;
+            next();
+        })
+        .catch((err) => console.log(err));
+});
 
 app.use("/admin", adminRouter);
 app.use(shopRouter);
@@ -45,24 +60,22 @@ app.use(authRouter);
 app.use(error404Controller.get404Page);
 
 mongoose
-  .connect(
-    MONGODB_URI
-  )
-  .then((result) => {
-    User.findOne().then((user) => {
-      if (!user) {
-        const user = new User({
-          name: "fatony",
-          email: "test@test.com",
-          cart: {
-            items: [],
-          },
+    .connect(MONGODB_URI)
+    .then((result) => {
+        User.findOne().then((user) => {
+            if (!user) {
+                const user = new User({
+                    name: "fatony",
+                    email: "test@test.com",
+                    cart: {
+                        items: [],
+                    },
+                });
+                user.save();
+            }
         });
-        user.save();
-      }
-    });
 
-    console.log("Connected!");
-    app.listen(3000);
-  })
-  .catch((err) => console.log(err));
+        console.log("Connected!");
+        app.listen(3000);
+    })
+    .catch((err) => console.log(err));
