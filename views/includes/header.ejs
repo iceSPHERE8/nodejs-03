@@ -53,7 +53,15 @@
           >Login</a
         >
       </li>
+      <li class="ml-4 mr-4 mt-2 mb-2">
+        <a
+          href="/signup"
+          class="<%= path === '/signup' ? 'text-lime-200' : 'text-white hover:text-lime-200' %>"
+          >Signup</a
+        >
+      </li>
       <% } %>
+      <% if(isAuthenticated) { %>
       <li class="ml-4 mr-4 mt-2 mb-2">
         <form action="/logout" method="post">
           <button type="submit" class="text-white hover:text-lime-200">
@@ -61,6 +69,7 @@
           </button>
         </form>
       </li>
+      <% } %>
     </ul>
   </nav>
 </header>
