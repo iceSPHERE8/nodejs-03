@@ -18,6 +18,7 @@
           </h1>
           <p class="ml-8 mt-8"><%= product.description %></p>
           <form action="/add-to-cart" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
             <input hidden name="productId" value="<%= product._id %>" />
             <input hidden name="productPrice" value="<%= product.price %>" />
             <button

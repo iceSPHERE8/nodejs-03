@@ -40,6 +40,7 @@
                 </button>
               </form>
               <form class="w-6/12 ml-1" action="/admin/delete-product" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
                 <input type="hidden" name="productId" value="<%= prod._id %>" />
                 <input type="hidden" name="productPrice" value="<%= prod.price %>" />
                 <button

@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
+const csrf = require("csurf");
+
 const User = require("./models/user");
 
 const { adminRouter } = require("./routes/admin");
@@ -32,6 +34,8 @@ const store = new MongoDBStore({
     collection: "sessions",
 });
 
+const csrfProtection = csrf();
+
 app.use(
     session({
         secret: "my secret",
@@ -40,6 +44,8 @@ app.use(
         store: store,
     })
 );
+
+app.use(csrfProtection);
 
 app.use((req, res, next) => {
     if (!req.session.user) {
@@ -52,6 +58,12 @@ app.use((req, res, next) => {
         })
         .catch((err) => console.log(err));
 });
+
+app.use((req, res, next) => {
+    res.locals.isAuthenticated = req.session.isLogged;
+    res.locals.csrfToken = req.csrfToken();
+    next();
+})
 
 app.use("/admin", adminRouter);
 app.use(shopRouter);

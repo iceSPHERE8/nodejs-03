@@ -36,6 +36,7 @@
             >
             <% if(isAuthenticated) { %>
             <form action="/add-to-cart" method="post">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
               <input hidden name="productId" value="<%= prod._id %>" />
               <input hidden name="productPrice" value="<%= prod.price %>" />
               <button
