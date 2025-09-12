@@ -18,7 +18,7 @@
 
             <form
                 class="flex flex-col items-center"
-                action="/login"
+                action="/reset"
                 method="post"
             >
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
@@ -29,23 +29,13 @@
                     id="email"
                     placeholder="Enter email..."
                 />
-                <input
-                    class="border-2 rounded-md pl-2 pr-2 w-full mt-2"
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Enter password..."
-                />
                 <button
                     type="submit"
                     class="uppercase bg-lime-900 w-full mt-2 text-white pt-2 pb-2 hover:translate-y-1 hover:cursor-pointer transition duration-75"
                 >
-                    Login
+                    Reset password
                 </button>
             </form>
-            <div>
-                <a href="/reset">Reset password</a>
-            </div>
         </main>
     </body>
 </html>
